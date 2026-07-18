@@ -1,0 +1,102 @@
+/* Global styles — extracted verbatim from the Mission Control design's
+   <helmet> block: base body/anchors, themed cursor, keyframes,
+   responsive rules, and reduced-motion handling. */
+
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #05070D; color: #EDEFF7; -webkit-font-smoothing: antialiased; }
+  a { color: #34E0FF; }
+  a:hover { color: #FF6EC7; }
+  ::selection { background: rgba(155,124,255,0.45); }
+  /* themed cursor: a small reticle everywhere (no I-beam over text), a charged ring over anything clickable */
+  * { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><circle cx='10' cy='10' r='7' fill='none' stroke='%2334E0FF' stroke-width='1.5' opacity='0.85'/><circle cx='10' cy='10' r='1.6' fill='%23FF6EC7'/></svg>") 10 10, auto !important; }
+  a, button, input, textarea, select, label, [style*="cursor: pointer"] { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22'><circle cx='11' cy='11' r='8' fill='rgba(155,124,255,0.28)' stroke='%239B7CFF' stroke-width='1.6'/><circle cx='11' cy='11' r='2' fill='%2334E0FF'/></svg>") 11 11, pointer !important; }
+  @keyframes mc-click-ring { 0% { transform: scale(0.35); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+  @keyframes mc-click-target { 0% { transform: scale(0.4); opacity: 0; } 25% { opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+  @keyframes mc-rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+  @keyframes mc-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  @keyframes mc-caret { 50% { opacity: 0; } }
+  @keyframes mc-spin { to { transform: rotate(360deg); } }
+  @keyframes mc-poweron { 0% { opacity: 0; transform: scale(0.965); filter: brightness(2.2) saturate(0.4); } 45% { opacity: 1; filter: brightness(1.35) saturate(0.85); } 100% { opacity: 1; transform: scale(1); filter: brightness(1) saturate(1); } }
+  @keyframes mc-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes mc-wordmark { 0% { opacity: 0; transform: scale(0.92); letter-spacing: 0.08em; } 100% { opacity: 1; transform: scale(1); letter-spacing: 0em; } }
+  @keyframes mc-drift-a { from { transform: translate(0,0) scale(1); } to { transform: translate(60px,34px) scale(1.12); } }
+  @keyframes mc-drift-b { from { transform: translate(0,0) scale(1.08); } to { transform: translate(-54px,42px) scale(0.94); } }
+  @keyframes mc-drift-c { from { transform: translate(0,0) scale(1); } to { transform: translate(44px,-48px) scale(1.16); } }
+  @keyframes mc-astro-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  @keyframes mc-astro-wave { 0%,100% { transform: rotate(8deg); } 35% { transform: rotate(-42deg); } 60% { transform: rotate(12deg); } }
+  @keyframes mc-astro-flame { 0%,100% { transform: scaleY(1); opacity: 0.95; } 50% { transform: scaleY(1.7); opacity: 0.55; } }
+  @keyframes mc-astro-land { 0% { transform: scale(1,1); } 40% { transform: scale(1.14,0.8); } 70% { transform: scale(0.96,1.05); } 100% { transform: scale(1,1); } }
+  @keyframes mc-astro-flip { 0% { transform: translateY(0) rotate(0deg); } 18% { transform: translateY(-18px) rotate(30deg); } 50% { transform: translateY(-30px) rotate(180deg); } 82% { transform: translateY(-10px) rotate(330deg); } 100% { transform: translateY(0) rotate(360deg); } }
+  @keyframes mc-astro-sway { 0%,100% { transform: rotate(0deg) translateY(0); } 25% { transform: rotate(-8deg) translateY(-3px); } 75% { transform: rotate(8deg) translateY(-3px); } }
+  @keyframes mc-astro-zerog { 0%,100% { transform: translate(0,0) rotate(0deg); } 25% { transform: translate(8px,-11px) rotate(10deg); } 50% { transform: translate(0,-17px) rotate(0deg); } 75% { transform: translate(-8px,-11px) rotate(-10deg); } }
+  @keyframes mc-astro-hatch { 0% { opacity: 0; transform: translateY(16px) scale(0.25); } 60% { opacity: 1; transform: translateY(-8px) scale(1.06); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes mc-astro-near { 0%,100% { transform: scale(1) translateY(0); } 38% { transform: scale(1.85) translateY(-14px); } 58% { transform: scale(1.8) translateY(-12px) rotate(6deg); } }
+  @keyframes mc-cloud-drift { from { transform: translateX(-2.5%); } to { transform: translateX(2.5%); } }
+  [data-deep-planet] [data-mc-clouds] { animation: mc-cloud-drift 26s ease-in-out infinite alternate; }
+  [data-mc-astro] [data-astro-arm] { transform-box: view-box; transform-origin: 32px 25px; transform: rotate(8deg); }
+  [data-mc-astro] [data-astro-flame] { opacity: 0; transition: opacity 0.2s ease; transform-box: fill-box; transform-origin: center top; }
+  [data-mc-astro] [data-astro-shadow] { opacity: 0; transition: opacity 0.45s ease; }
+  [data-mc-astro][data-flying="1"] [data-astro-flame] { opacity: 1; animation: mc-astro-flame 0.16s linear infinite; }
+  [data-mc-astro][data-perched="1"] [data-astro-shadow] { opacity: 0.6; }
+  [data-mc-astro][data-landing="1"] [data-astro-body] { animation: mc-astro-land 0.5s cubic-bezier(0.34,1.56,0.64,1) both; transform-origin: center bottom; }
+  [data-mc-astro][data-idle="1"] [data-astro-body] { animation: mc-astro-bob 2.6s ease-in-out infinite; }
+  [data-mc-astro][data-idle="1"] [data-astro-arm] { animation: mc-astro-wave 3s ease-in-out infinite; }
+  [data-mc-astro][data-idle="2"] [data-astro-body] { animation: mc-astro-flip 1.9s cubic-bezier(0.37,0,0.63,1) both; transform-origin: center center; }
+  [data-mc-astro][data-idle="3"] [data-astro-body] { animation: mc-astro-sway 3.4s ease-in-out infinite; transform-origin: center bottom; }
+  [data-mc-astro][data-idle="4"] [data-astro-body] { animation: mc-astro-zerog 4.8s ease-in-out infinite; }
+  [data-mc-astro][data-idle="5"] [data-astro-body] { animation: mc-astro-hatch 1s cubic-bezier(0.34,1.56,0.64,1) both; transform-origin: center bottom; }
+  [data-mc-astro][data-idle="6"] [data-astro-body] { animation: mc-astro-near 4.2s ease-in-out both; transform-origin: center center; }
+  [data-mc-seen="1"] > [data-st] { animation: mc-rise 0.85s cubic-bezier(0.16,1,0.3,1) both; }
+  [data-mc-seen="1"] [data-screenon] { animation: mc-poweron 1.05s cubic-bezier(0.2,0.8,0.3,1) both; animation-delay: 0.35s; }
+  [data-mc-seen="1"] [data-line] { animation: mc-grow 1.1s cubic-bezier(0.16,1,0.3,1) 0.4s both; transform-origin: left center; }
+  [data-mc-seen="0"] > [data-st] { opacity: 0; }
+  [data-mc-seen="0"] [data-screenon] { opacity: 0; }
+  @media (max-width: 880px) {
+    [data-mc-nav] { display: none !important; }
+    [data-mc-hidemobile] { display: none !important; }
+    [data-mc-hero] { grid-template-columns: 1fr !important; gap: 36px !important; }
+    [data-mc-pay] { grid-template-columns: 1fr !important; gap: 28px !important; }
+    [data-mc-syscard] { position: static !important; order: 0 !important; }
+    [data-mc-pad] { padding-left: 18px !important; padding-right: 18px !important; }
+    [data-mc-cols3] { grid-template-columns: 1fr !important; gap: 24px !important; }
+    [data-mc-cols2] { grid-template-columns: 1fr !important; }
+    [data-mc-statgrid] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    [data-mc-telemetry] { flex-wrap: wrap !important; row-gap: 6px !important; }
+    [data-mc-bezel] { padding: 8px !important; }
+    [data-mc-app] { padding: 14px !important; }
+    [data-mc-num] { font-size: 60px !important; }
+    [data-mc-logo] { width: 40px !important; height: 40px !important; }
+    [data-mc-astro] { display: none !important; }
+    [data-mc-archrow] { grid-template-columns: 1fr !important; gap: 6px !important; }
+    [data-mc-archgrid] { grid-template-columns: 1fr !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    [data-mc-seen="0"] > [data-st] { opacity: 1; }
+    [data-mc-seen="0"] [data-screenon] { opacity: 1; }
+  }
+
+  /* --- post-port polish (hand-authored; safe to edit directly) ------------------- */
+
+  /* dark UA chrome (scrollbars, form controls) to match the console shell */
+  html { color-scheme: dark; }
+
+  /* keyboard parity with the custom cursor: a clear themed ring on focus */
+  :focus-visible {
+    outline: 2px solid #34E0FF !important;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* the fixed boost meter shares the right edge with payload columns between
+     880–1620px; reserve a gutter so its tube and label never sit on copy */
+  @media (min-width: 880px) and (max-width: 1620px) {
+    [data-mc-pay] { padding-right: 96px !important; }
+  }
+  /* content still glides beneath the meter during warps — keep its readout legible */
+  [data-mc-boost] {
+    padding: 12px 4px;
+    border-radius: 14px;
+    background: rgba(5, 7, 13, 0.55);
+  }
