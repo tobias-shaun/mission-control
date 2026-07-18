@@ -188,13 +188,12 @@ hierarchy, alignment, the light-demo-in-dark-shell contrast, and whether motion 
 
 ## 6. Open items & known issues (prioritized)
 
-1. **⭐ Process end-to-end is under-delivered.** The primary goal. Product _demos_ exist, but the
-   **per-project "problem → decisions → build → ship" story lives in the Mission Report pages, which
-   are placeholders** (`app/reports/[slug]/page.tsx`). There are four real report design files in the
-   same claude.ai/design project ("Mission Report - hatched/Job Command Center/Life Hub/Property
-   Platform.dc.html"). **Porting these is the highest-leverage work** and there's already a spawned
-   task chip for it. Also consider a concise, always-visible "how I work" through-line so the process
-   reads even without diving into a report.
+1. **⭐ Process end-to-end — LARGELY DELIVERED 2026-07-18.** The four Mission Report pages are now
+   real (problem → flight rules/decisions → build log → staged captures → receipts), built from
+   site-truthful copy in `app/reports/[slug]/` (`reports-data.ts` holds all copy). **Remaining:**
+   Tobias must supply real app screenshots per `SCREENSHOTS-NEEDED.md` (slots render as styled
+   "AWAITING TRANSMISSION" frames until then). The original report design files in the
+   claude.ai/design project remain an alternative direction if he prefers a richer port later.
 2. ~~**Boost-meter overlap** at ~1280px~~ **FIXED 2026-07-18** — right gutter reserved for
    `[data-mc-pay]` at 880–1620px + dark backdrop pill on the meter (globals.css).
 3. ~~**No social-preview image / OG tags**~~ **FIXED 2026-07-18** — `app/opengraph-image.png`

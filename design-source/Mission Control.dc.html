@@ -263,9 +263,9 @@
         <div style="position: absolute; top: 0; left: 16px; right: 16px; height: 1px; background: linear-gradient(90deg, transparent, rgba(155,124,255,0.7), transparent);"></div>
         <div style="font-size: 9px; letter-spacing: 0.24em; color: rgba(237,239,247,0.5); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(147,162,255,0.14); display: flex; justify-content: space-between;"><span>COMMS — THE CANDIDATE</span><span style="color: #4ADE80; display: flex; align-items: center; gap: 5px;"><span style="width: 5px; height: 5px; border-radius: 50%; background: #4ADE80; animation: mc-pulse 2s ease-in-out infinite;"></span>LIVE</span></div>
           <div style="display: grid; grid-template-columns: 54px 1fr; gap: 7px 12px; min-height: 132px; align-content: start;">
-            <span style="color: rgba(237,239,247,0.45);">status</span><span style="color: #D7DCEC;">{{ term1 }}<sc-if value="{{ caret1 }}" hint-placeholder-val="{{ false }}"><span style="color: #4ADE80; animation: mc-caret 0.9s step-end infinite;">▌</span></sc-if></span>
-            <span style="color: rgba(237,239,247,0.45);">now</span><span style="color: #D7DCEC;">{{ term2 }}<sc-if value="{{ caret2 }}" hint-placeholder-val="{{ false }}"><span style="color: #4ADE80; animation: mc-caret 0.9s step-end infinite;">▌</span></sc-if></span>
-            <span style="color: rgba(237,239,247,0.45);">stack</span><span style="color: #D7DCEC;">{{ term3 }}<sc-if value="{{ caret3 }}" hint-placeholder-val="{{ true }}"><span style="color: #4ADE80; animation: mc-caret 0.9s step-end infinite;">▌</span></sc-if></span>
+            <span style="color: rgba(237,239,247,0.58);">status</span><span style="color: #D7DCEC;">{{ term1 }}<sc-if value="{{ caret1 }}" hint-placeholder-val="{{ false }}"><span style="color: #4ADE80; animation: mc-caret 0.9s step-end infinite;">▌</span></sc-if></span>
+            <span style="color: rgba(237,239,247,0.58);">now</span><span style="color: #D7DCEC;">{{ term2 }}<sc-if value="{{ caret2 }}" hint-placeholder-val="{{ false }}"><span style="color: #4ADE80; animation: mc-caret 0.9s step-end infinite;">▌</span></sc-if></span>
+            <span style="color: rgba(237,239,247,0.58);">stack</span><span style="color: #D7DCEC;">{{ term3 }}<sc-if value="{{ caret3 }}" hint-placeholder-val="{{ true }}"><span style="color: #4ADE80; animation: mc-caret 0.9s step-end infinite;">▌</span></sc-if></span>
           </div>
         </aside>
 
@@ -283,13 +283,13 @@
             <path d="M14 68 L10 80 M50 68 L54 80" stroke="#8B90A8" stroke-width="3" stroke-linecap="round"></path>
             <circle cx="32" cy="52" r="2.2" fill="#FF6E6E" style="animation: mc-pulse 1.6s ease-in-out infinite;"></circle>
           </svg>
-          <div style="font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.22em; color: rgba(237,239,247,0.4); margin-top: 8px;">CREW VEHICLE — <span style="color: #FFC24B;">DAMAGED · 4 PARTS NEEDED</span></div>
+          <div style="font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.22em; color: rgba(237,239,247,0.55); margin-top: 8px;">CREW VEHICLE — <sc-if value="{{ crewDamaged }}" hint-placeholder-val="{{ true }}"><span style="color: #FFC24B;">DAMAGED · 4 PARTS NEEDED</span></sc-if><sc-if value="{{ crewFixed }}" hint-placeholder-val="{{ false }}"><span style="color: #4ADE80;">REPAIRED · READY TO LAUNCH</span></sc-if></div>
         </div>
       </div>
 
       <!-- System chart — four planets -->
       <div data-mc-pad="" style="position: relative; max-width: 1380px; margin: 0 auto; padding: 4px 36px 38px; box-sizing: border-box;">
-        <div style="font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: rgba(237,239,247,0.45); margin-bottom: 18px;">SYSTEM CHART — FOUR PLANETS, FOUR SHIPPED PRODUCTS · A SHIP PART WAITS ON EACH</div>
+        <div style="font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: rgba(237,239,247,0.58); margin-bottom: 18px;">SYSTEM CHART — FOUR PLANETS, FOUR SHIPPED PRODUCTS · A SHIP PART WAITS ON EACH</div>
         <div style="position: relative; display: flex; align-items: flex-start;">
           <div data-mc-hidemobile="" style="position: absolute; left: 8%; right: 8%; top: 22px; border-top: 1px dashed rgba(147,162,255,0.25);"></div>
           <sc-for list="{{ planets }}" as="pl" hint-placeholder-count="4">
@@ -338,7 +338,7 @@
         <div data-mc-pay="" style="display: grid; grid-template-columns: 350px minmax(0, 1fr); gap: 52px; align-items: start;">
           <div data-mc-syscard="" data-st="" style="display: flex; flex-direction: column; position: sticky; top: 84px; animation-delay: 0.15s;">
             <div style="font-size: 15.5px; line-height: 1.65; color: rgba(237,239,247,0.88); margin-bottom: 8px;">AI styling for postpartum mums. Warm iOS feel — her wardrobe, her rules.</div>
-            <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.45); margin-bottom: 20px;">next.js · supabase · claude</div>
+            <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.58); margin-bottom: 20px;">next.js · supabase · claude</div>
             <div style="font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: #FF9EB8; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,158,184,0.3);">FLIGHT RULES — DESIGN DECISIONS</div>
             <ol style="margin: 0 0 24px; padding: 0; list-style: none; display: flex; flex-direction: column;">
               <li style="display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(147,162,255,0.12); font-size: 15px; line-height: 1.55; color: rgba(237,239,247,0.92);"><span style="font-family: 'Martian Mono', monospace; font-size: 10px; color: #FF9EB8; padding-top: 3px;">R1</span>Styles what she already owns — it never sells her anything</li>
@@ -363,7 +363,7 @@
                 <sc-for list="{{ p1Tabs }}" as="tab" hint-placeholder-count="2">
                   <button onClick="{{ tab.go }}" style="cursor: pointer; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: {{ tab.color }}; background: {{ tab.bg }}; border: 1px solid {{ tab.border }}; padding: 6px 12px; border-radius: 3px; transition: all 0.25s ease;">{{ tab.label }}</button>
                 </sc-for>
-                <span data-mc-hidemobile="" style="margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.35);">APP MAP {{ p1Pos }}</span>
+                <span data-mc-hidemobile="" style="margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.52);">APP MAP {{ p1Pos }}</span>
               </div>
               <div data-screenon="" style="border-radius: 9px; overflow: hidden;">
                 <div style="display: flex; transform: {{ p1Track }}; transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);">
@@ -450,11 +450,11 @@
                 </div>
               </div>
             </div>
-            <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.45); padding: 12px 6px 0;">
+            <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.58); padding: 12px 6px 0;">
               <span style="color: #FF9EB8;">SYS-01</span>
               <span style="color: {{ part1Color }}; transition: color 0.4s ease;">{{ part1Text }}</span>
               <span>FAITHFUL REPLICA OF THE REAL UI — SLIDE BETWEEN SCREENS</span>
-              <span data-mc-hidemobile="" style="margin-left: auto;">IFRAME SLOT READY — LIVE APP NEXT</span>
+              <span data-mc-hidemobile="" style="margin-left: auto;">CONSOLE REPLICA — REAL APP IN THE MISSION REPORT</span>
             </div>
           </div>
         </div>
@@ -492,7 +492,7 @@
                 <sc-for list="{{ p2Tabs }}" as="tab" hint-placeholder-count="2">
                   <button onClick="{{ tab.go }}" style="cursor: pointer; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: {{ tab.color }}; background: {{ tab.bg }}; border: 1px solid {{ tab.border }}; padding: 6px 12px; border-radius: 3px; transition: all 0.25s ease;">{{ tab.label }}</button>
                 </sc-for>
-                <span data-mc-hidemobile="" style="margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.35);">APP MAP {{ p2Pos }}</span>
+                <span data-mc-hidemobile="" style="margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.52);">APP MAP {{ p2Pos }}</span>
               </div>
               <div data-screenon="" style="border-radius: 9px; overflow: hidden;">
                 <div style="display: flex; transform: {{ p2Track }}; transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);">
@@ -570,7 +570,7 @@
                 </div>
               </div>
             </div>
-            <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.45); padding: 12px 6px 0;">
+            <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.58); padding: 12px 6px 0;">
               <span style="color: #93A2FF;">SYS-02</span>
               <span style="color: {{ part2Color }}; transition: color 0.4s ease;">{{ part2Text }}</span>
               <span>TAP CARDS TO MOVE THEM — THE BRIEF &amp; FUNNEL FOLLOW</span>
@@ -580,7 +580,7 @@
 
           <div data-mc-syscard="" data-st="" style="display: flex; flex-direction: column; position: sticky; top: 84px; order: 2; animation-delay: 0.15s;">
             <div style="font-size: 15.5px; line-height: 1.65; color: rgba(237,239,247,0.88); margin-bottom: 8px;">Job-search ops, run like revenue ops. Emails me my action list every morning.</div>
-            <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.45); margin-bottom: 20px;">next.js · supabase · resend</div>
+            <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.58); margin-bottom: 20px;">next.js · supabase · resend</div>
             <div style="font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: #93A2FF; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(147,162,255,0.35);">FLIGHT RULES — DESIGN DECISIONS</div>
             <ol style="margin: 0 0 24px; padding: 0; list-style: none; display: flex; flex-direction: column;">
               <li style="display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(147,162,255,0.12); font-size: 15px; line-height: 1.55; color: rgba(237,239,247,0.92);"><span style="font-family: 'Martian Mono', monospace; font-size: 10px; color: #93A2FF; padding-top: 3px;">R1</span>No auto-submit, ever — I review every application</li>
@@ -614,7 +614,7 @@
         <div data-mc-pay="" style="display: grid; grid-template-columns: 350px minmax(0, 1fr); gap: 52px; align-items: start;">
           <div data-mc-syscard="" data-st="" style="display: flex; flex-direction: column; position: sticky; top: 84px; animation-delay: 0.15s;">
             <div style="font-size: 15.5px; line-height: 1.65; color: rgba(237,239,247,0.88); margin-bottom: 8px;">The family OS our household runs on. 175k lines · 40 routes · two daily users.</div>
-            <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.45); margin-bottom: 20px;">next.js · supabase</div>
+            <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.58); margin-bottom: 20px;">next.js · supabase</div>
             <div style="font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: #FF9E6E; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,158,110,0.35);">FLIGHT RULES — DESIGN DECISIONS</div>
             <ol style="margin: 0 0 24px; padding: 0; list-style: none; display: flex; flex-direction: column;">
               <li style="display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(147,162,255,0.12); font-size: 15px; line-height: 1.55; color: rgba(237,239,247,0.92);"><span style="font-family: 'Martian Mono', monospace; font-size: 10px; color: #FF9E6E; padding-top: 3px;">R1</span>Wedge: one table, four categories — then grow</li>
@@ -638,7 +638,7 @@
                 <sc-for list="{{ p3Tabs }}" as="tab" hint-placeholder-count="2">
                   <button onClick="{{ tab.go }}" style="cursor: pointer; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: {{ tab.color }}; background: {{ tab.bg }}; border: 1px solid {{ tab.border }}; padding: 6px 12px; border-radius: 3px; transition: all 0.25s ease;">{{ tab.label }}</button>
                 </sc-for>
-                <span data-mc-hidemobile="" style="margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.35);">APP MAP {{ p3Pos }}</span>
+                <span data-mc-hidemobile="" style="margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.52);">APP MAP {{ p3Pos }}</span>
               </div>
               <div data-screenon="" style="border-radius: 9px; overflow: hidden;">
                 <div style="display: flex; transform: {{ p3Track }}; transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);">
@@ -709,7 +709,7 @@
                 </div>
               </div>
             </div>
-            <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.45); padding: 12px 6px 0;">
+            <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.58); padding: 12px 6px 0;">
               <span style="color: #FF9E6E;">SYS-03</span>
               <span style="color: {{ part3Color }}; transition: color 0.4s ease;">{{ part3Text }}</span>
               <span>CHECK THINGS OFF — THE BIG NUMBER &amp; THE WEEK FOLLOW</span>
@@ -751,7 +751,7 @@
                 <sc-for list="{{ p4Tabs }}" as="tab" hint-placeholder-count="2">
                   <button onClick="{{ tab.go }}" style="cursor: pointer; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: {{ tab.color }}; background: {{ tab.bg }}; border: 1px solid {{ tab.border }}; padding: 6px 12px; border-radius: 3px; transition: all 0.25s ease;">{{ tab.label }}</button>
                 </sc-for>
-                <span data-mc-hidemobile="" style="margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.35);">APP MAP {{ p4Pos }}</span>
+                <span data-mc-hidemobile="" style="margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.52);">APP MAP {{ p4Pos }}</span>
               </div>
               <div data-screenon="" style="border-radius: 9px; overflow: hidden;">
                 <div style="display: flex; transform: {{ p4Track }}; transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);">
@@ -827,7 +827,7 @@
                 </div>
               </div>
             </div>
-            <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.45); padding: 12px 6px 0;">
+            <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.58); padding: 12px 6px 0;">
               <span style="color: #6EC8FF;">SYS-04</span>
               <span style="color: {{ part4Color }}; transition: color 0.4s ease;">{{ part4Text }}</span>
               <span>ONE CONFIG OBJECT REBRANDS EVERYTHING</span>
@@ -837,7 +837,7 @@
 
           <div data-mc-syscard="" data-st="" style="display: flex; flex-direction: column; position: sticky; top: 84px; order: 2; animation-delay: 0.15s;">
             <div style="font-size: 15.5px; line-height: 1.65; color: rgba(237,239,247,0.88); margin-bottom: 8px;">Client build → multi-tenant white-label SaaS. Glass fintech UI, tenant-swappable brand.</div>
-            <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.45); margin-bottom: 20px;">next.js · postgres RLS</div>
+            <div style="font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.58); margin-bottom: 20px;">next.js · postgres RLS</div>
             <div style="font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: #6EC8FF; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(110,200,255,0.35);">FLIGHT RULES — DESIGN DECISIONS</div>
             <ol style="margin: 0 0 24px; padding: 0; list-style: none; display: flex; flex-direction: column;">
               <li style="display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(147,162,255,0.12); font-size: 15px; line-height: 1.55; color: rgba(237,239,247,0.92);"><span style="font-family: 'Martian Mono', monospace; font-size: 10px; color: #6EC8FF; padding-top: 3px;">R1</span>White-label from day one — brand is one config object</li>
@@ -944,7 +944,7 @@
             <p style="margin: 0; font-size: 13px; line-height: 1.6; color: rgba(237,239,247,0.72);">One deployment, N tenants: a config object per tenant, enforced by Postgres RLS.</p>
           </div>
         </div>
-        <div data-st="" style="margin-top: 22px; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.4); animation-delay: 0.35s;">FULL DIAGRAMS AND THE WHY-NOT LIST — IN EACH MISSION REPORT, OR LIVE ON A CALL</div>
+        <div data-st="" style="margin-top: 22px; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.55); animation-delay: 0.35s;">FULL DIAGRAMS AND THE WHY-NOT LIST — IN EACH MISSION REPORT, OR LIVE ON A CALL</div>
       </div>
     </section>
 
@@ -1021,14 +1021,14 @@
             <a href="#" style="color: #EDEFF7; text-decoration: none; border-bottom: 1px solid rgba(237,239,247,0.3); padding-bottom: 2px;">LINKEDIN</a>
             <a href="#" style="color: #EDEFF7; text-decoration: none; border-bottom: 1px solid rgba(237,239,247,0.3); padding-bottom: 2px;">GITHUB</a>
           </div>
-          <div style="font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(237,239,247,0.4); line-height: 2;">SET IN ARCHIVO BLACK &amp; MARTIAN MONO · BUILT WITH NEXT.JS, TYPESCRIPT &amp; CLAUDE CODE · ALL TELEMETRY ON THIS PAGE IS REAL · © 2026</div>
+          <div style="font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(237,239,247,0.55); line-height: 2;">SET IN ARCHIVO BLACK &amp; MARTIAN MONO · BUILT WITH NEXT.JS, TYPESCRIPT &amp; CLAUDE CODE · ALL TELEMETRY ON THIS PAGE IS REAL · © 2026</div>
         </div>
         <div data-astro-perch="" data-solid="" style="border: 1px solid rgba(147,162,255,0.2); border-radius: 8px; padding: 20px 22px; font-family: 'Martian Mono', monospace; font-size: 10.5px; line-height: 1.9; background: rgba(11,15,26,0.6);">
           <div style="font-size: 9px; letter-spacing: 0.24em; color: rgba(237,239,247,0.5); margin-bottom: 12px; padding-bottom: 9px; border-bottom: 1px solid rgba(147,162,255,0.14);">SYS-05 — THIS CONSOLE</div>
           <div style="display: grid; grid-template-columns: 58px 1fr; gap: 5px 12px;">
-            <span style="color: rgba(237,239,247,0.45);">what</span><span>the fifth working system</span>
-            <span style="color: rgba(237,239,247,0.45);">built</span><span>PRD first · claude code · shipped</span>
-            <span style="color: rgba(237,239,247,0.45);">status</span><span style="color: #4ADE80;">you're inside the demo</span>
+            <span style="color: rgba(237,239,247,0.58);">what</span><span>the fifth working system</span>
+            <span style="color: rgba(237,239,247,0.58);">built</span><span>PRD first · claude code · shipped</span>
+            <span style="color: rgba(237,239,247,0.58);">status</span><span style="color: #4ADE80;">you're inside the demo</span>
           </div>
         </div>
       </div>

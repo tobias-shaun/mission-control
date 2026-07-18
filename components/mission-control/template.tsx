@@ -187,9 +187,9 @@ export function Template(vals: any) {
         <div style={sx(`position: absolute; top: 0; left: 16px; right: 16px; height: 1px; background: linear-gradient(90deg, transparent, rgba(155,124,255,0.7), transparent);`)}></div>
         <div style={sx(`font-size: 9px; letter-spacing: 0.24em; color: rgba(237,239,247,0.5); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(147,162,255,0.14); display: flex; justify-content: space-between;`)}><span>COMMS — THE CANDIDATE</span><span style={sx(`color: #4ADE80; display: flex; align-items: center; gap: 5px;`)}><span style={sx(`width: 5px; height: 5px; border-radius: 50%; background: #4ADE80; animation: mc-pulse 2s ease-in-out infinite;`)}></span>LIVE</span></div>
           <div style={sx(`display: grid; grid-template-columns: 54px 1fr; gap: 7px 12px; min-height: 132px; align-content: start;`)}>
-            <span style={sx(`color: rgba(237,239,247,0.45);`)}>status</span><span style={sx(`color: #D7DCEC;`)}>{vals.term1}{(vals.caret1) ? (<><span style={sx(`color: #4ADE80; animation: mc-caret 0.9s step-end infinite;`)}>▌</span></>) : null}</span>
-            <span style={sx(`color: rgba(237,239,247,0.45);`)}>now</span><span style={sx(`color: #D7DCEC;`)}>{vals.term2}{(vals.caret2) ? (<><span style={sx(`color: #4ADE80; animation: mc-caret 0.9s step-end infinite;`)}>▌</span></>) : null}</span>
-            <span style={sx(`color: rgba(237,239,247,0.45);`)}>stack</span><span style={sx(`color: #D7DCEC;`)}>{vals.term3}{(vals.caret3) ? (<><span style={sx(`color: #4ADE80; animation: mc-caret 0.9s step-end infinite;`)}>▌</span></>) : null}</span>
+            <span style={sx(`color: rgba(237,239,247,0.58);`)}>status</span><span style={sx(`color: #D7DCEC;`)}>{vals.term1}{(vals.caret1) ? (<><span style={sx(`color: #4ADE80; animation: mc-caret 0.9s step-end infinite;`)}>▌</span></>) : null}</span>
+            <span style={sx(`color: rgba(237,239,247,0.58);`)}>now</span><span style={sx(`color: #D7DCEC;`)}>{vals.term2}{(vals.caret2) ? (<><span style={sx(`color: #4ADE80; animation: mc-caret 0.9s step-end infinite;`)}>▌</span></>) : null}</span>
+            <span style={sx(`color: rgba(237,239,247,0.58);`)}>stack</span><span style={sx(`color: #D7DCEC;`)}>{vals.term3}{(vals.caret3) ? (<><span style={sx(`color: #4ADE80; animation: mc-caret 0.9s step-end infinite;`)}>▌</span></>) : null}</span>
           </div>
         </aside>
 
@@ -207,13 +207,13 @@ export function Template(vals: any) {
             <path d="M14 68 L10 80 M50 68 L54 80" stroke="#8B90A8" strokeWidth="3" strokeLinecap="round"></path>
             <circle cx="32" cy="52" r="2.2" fill="#FF6E6E" style={sx(`animation: mc-pulse 1.6s ease-in-out infinite;`)}></circle>
           </svg>
-          <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.22em; color: rgba(237,239,247,0.4); margin-top: 8px;`)}>CREW VEHICLE — <span style={sx(`color: #FFC24B;`)}>DAMAGED · 4 PARTS NEEDED</span></div>
+          <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.22em; color: rgba(237,239,247,0.55); margin-top: 8px;`)}>CREW VEHICLE — {(vals.crewDamaged) ? (<><span style={sx(`color: #FFC24B;`)}>DAMAGED · 4 PARTS NEEDED</span></>) : null}{(vals.crewFixed) ? (<><span style={sx(`color: #4ADE80;`)}>REPAIRED · READY TO LAUNCH</span></>) : null}</div>
         </div>
       </div>
 
       
       <div data-mc-pad="" style={sx(`position: relative; max-width: 1380px; margin: 0 auto; padding: 4px 36px 38px; box-sizing: border-box;`)}>
-        <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: rgba(237,239,247,0.45); margin-bottom: 18px;`)}>SYSTEM CHART — FOUR PLANETS, FOUR SHIPPED PRODUCTS · A SHIP PART WAITS ON EACH</div>
+        <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: rgba(237,239,247,0.58); margin-bottom: 18px;`)}>SYSTEM CHART — FOUR PLANETS, FOUR SHIPPED PRODUCTS · A SHIP PART WAITS ON EACH</div>
         <div style={sx(`position: relative; display: flex; align-items: flex-start;`)}>
           <div data-mc-hidemobile="" style={sx(`position: absolute; left: 8%; right: 8%; top: 22px; border-top: 1px dashed rgba(147,162,255,0.25);`)}></div>
           {(vals.planets).map((pl: any, _mci3: number) => (<Fragment key={_mci3}>
@@ -262,7 +262,7 @@ export function Template(vals: any) {
         <div data-mc-pay="" style={sx(`display: grid; grid-template-columns: 350px minmax(0, 1fr); gap: 52px; align-items: start;`)}>
           <div data-mc-syscard="" data-st="" style={sx(`display: flex; flex-direction: column; position: sticky; top: 84px; animation-delay: 0.15s;`)}>
             <div style={sx(`font-size: 15.5px; line-height: 1.65; color: rgba(237,239,247,0.88); margin-bottom: 8px;`)}>AI styling for postpartum mums. Warm iOS feel — her wardrobe, her rules.</div>
-            <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.45); margin-bottom: 20px;`)}>next.js · supabase · claude</div>
+            <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.58); margin-bottom: 20px;`)}>next.js · supabase · claude</div>
             <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: #FF9EB8; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,158,184,0.3);`)}>FLIGHT RULES — DESIGN DECISIONS</div>
             <ol style={sx(`margin: 0 0 24px; padding: 0; list-style: none; display: flex; flex-direction: column;`)}>
               <li style={sx(`display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(147,162,255,0.12); font-size: 15px; line-height: 1.55; color: rgba(237,239,247,0.92);`)}><span style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; color: #FF9EB8; padding-top: 3px;`)}>R1</span>Styles what she already owns — it never sells her anything</li>
@@ -287,7 +287,7 @@ export function Template(vals: any) {
                 {(vals.p1Tabs).map((tab: any, _mci4: number) => (<Fragment key={_mci4}>
                   <button onClick={tab.go} style={sx(`cursor: pointer; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: ${tab.color}; background: ${tab.bg}; border: 1px solid ${tab.border}; padding: 6px 12px; border-radius: 3px; transition: all 0.25s ease;`)}>{tab.label}</button>
                 </Fragment>))}
-                <span data-mc-hidemobile="" style={sx(`margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.35);`)}>APP MAP {vals.p1Pos}</span>
+                <span data-mc-hidemobile="" style={sx(`margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.52);`)}>APP MAP {vals.p1Pos}</span>
               </div>
               <div data-screenon="" style={sx(`border-radius: 9px; overflow: hidden;`)}>
                 <div style={sx(`display: flex; transform: ${vals.p1Track}; transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);`)}>
@@ -303,7 +303,7 @@ export function Template(vals: any) {
                       <div style={sx(`font-size: 12px; font-weight: 600; color: #8A7378; margin: 16px 0 10px;`)}>Your wardrobe · tap pieces to include them</div>
                       <div style={sx(`display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px;`)}>
                         {(vals.wardrobe).map((item: any, _mci5: number) => (<Fragment key={_mci5}>
-                          <div onClick={item.toggle} style={sx(`cursor: pointer; background: #FFFFFF; border-radius: 14px; padding: 9px; box-shadow: ${item.shadow}; transition: transform 0.15s ease, box-shadow 0.2s ease;`)} className={pseudoClass(`transform: translateY(-2px);`, `transform: scale(0.96);`)}>
+                          <div onClick={item.toggle} style={sx(`cursor: pointer; background: #FFFFFF; border-radius: 14px; padding: 9px; box-shadow: ${item.shadow}; transition: transform 0.15s ease, box-shadow 0.2s ease;`)} className={pseudoClass(`transform: translateY(-2px);`, `transform: scale(0.96);`)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); (item.toggle)(e); } }}>
                             <div style={sx(`height: 60px; border-radius: 10px; background: ${item.swatch}; position: relative;`)}>
                               {(item.selected) ? (<>
                                 <div style={sx(`position: absolute; top: 5px; right: 5px; width: 19px; height: 19px; border-radius: 50%; background: #8B7CF6; color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(139,124,246,0.4);`)}>✓</div>
@@ -374,11 +374,11 @@ export function Template(vals: any) {
                 </div>
               </div>
             </div>
-            <div style={sx(`display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.45); padding: 12px 6px 0;`)}>
+            <div style={sx(`display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.58); padding: 12px 6px 0;`)}>
               <span style={sx(`color: #FF9EB8;`)}>SYS-01</span>
               <span style={sx(`color: ${vals.part1Color}; transition: color 0.4s ease;`)}>{vals.part1Text}</span>
               <span>FAITHFUL REPLICA OF THE REAL UI — SLIDE BETWEEN SCREENS</span>
-              <span data-mc-hidemobile="" style={sx(`margin-left: auto;`)}>IFRAME SLOT READY — LIVE APP NEXT</span>
+              <span data-mc-hidemobile="" style={sx(`margin-left: auto;`)}>CONSOLE REPLICA — REAL APP IN THE MISSION REPORT</span>
             </div>
           </div>
         </div>
@@ -416,7 +416,7 @@ export function Template(vals: any) {
                 {(vals.p2Tabs).map((tab: any, _mci8: number) => (<Fragment key={_mci8}>
                   <button onClick={tab.go} style={sx(`cursor: pointer; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: ${tab.color}; background: ${tab.bg}; border: 1px solid ${tab.border}; padding: 6px 12px; border-radius: 3px; transition: all 0.25s ease;`)}>{tab.label}</button>
                 </Fragment>))}
-                <span data-mc-hidemobile="" style={sx(`margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.35);`)}>APP MAP {vals.p2Pos}</span>
+                <span data-mc-hidemobile="" style={sx(`margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.52);`)}>APP MAP {vals.p2Pos}</span>
               </div>
               <div data-screenon="" style={sx(`border-radius: 9px; overflow: hidden;`)}>
                 <div style={sx(`display: flex; transform: ${vals.p2Track}; transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);`)}>
@@ -436,7 +436,7 @@ export function Template(vals: any) {
                             <div style={sx(`display: flex; align-items: center; gap: 6px; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: #6E7291; margin-bottom: 8px;`)}>{stage.name}<span style={sx(`margin-left: auto; background: #FFFFFF; border: 1px solid #E4E5F0; border-radius: 3px; padding: 1px 6px; font-size: 9.5px; color: #4F46E5;`)}>{stage.count}</span></div>
                             <div style={sx(`display: flex; flex-direction: column; gap: 7px;`)}>
                               {(stage.cards).map((card: any, _mci10: number) => (<Fragment key={_mci10}>
-                                <div onClick={card.advance} style={sx(`cursor: pointer; background: #FFFFFF; border: 1px solid ${card.border}; border-radius: 5px; padding: 8px 10px; transition: border-color 0.2s ease, transform 0.12s ease; animation: mc-rise 0.25s ease;`)} className={pseudoClass(`transform: translateY(-1px); border-color: #4F46E5;`, `transform: scale(0.98);`)}>
+                                <div onClick={card.advance} style={sx(`cursor: pointer; background: #FFFFFF; border: 1px solid ${card.border}; border-radius: 5px; padding: 8px 10px; transition: border-color 0.2s ease, transform 0.12s ease; animation: mc-rise 0.25s ease;`)} className={pseudoClass(`transform: translateY(-1px); border-color: #4F46E5;`, `transform: scale(0.98);`)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); (card.advance)(e); } }}>
                                   <div style={sx(`font-size: 12px; font-weight: 600; color: #23214A; line-height: 1.3;`)}>{card.title}</div>
                                   <div style={sx(`font-size: 10.5px; color: #8A8DA8; margin-top: 2px;`)}>{card.company}</div>
                                   {(card.nudge) ? (<>
@@ -468,7 +468,7 @@ export function Template(vals: any) {
                         </div>
                         <div style={sx(`display: flex; flex-direction: column; padding-top: 6px;`)}>
                           {(vals.briefItems).map((bi: any, _mci11: number) => (<Fragment key={_mci11}>
-                            <div onClick={bi.toggle} style={sx(`cursor: pointer; display: flex; align-items: center; gap: 11px; padding: 9px 4px; border-bottom: 1px solid #F3F4F9; transition: background 0.15s ease;`)} className={pseudoClass(`background: #FAFAFE;`)}>
+                            <div onClick={bi.toggle} style={sx(`cursor: pointer; display: flex; align-items: center; gap: 11px; padding: 9px 4px; border-bottom: 1px solid #F3F4F9; transition: background 0.15s ease;`)} className={pseudoClass(`background: #FAFAFE;`)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); (bi.toggle)(e); } }}>
                               <div style={sx(`width: 17px; height: 17px; border-radius: 4px; box-sizing: border-box; border: 1.5px solid ${bi.boxBorder}; background: ${bi.boxBg}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; transition: all 0.2s ease;`)}>{bi.tick}</div>
                               <div style={sx(`flex: 1; font-size: 12.5px; font-weight: 600; color: ${bi.color}; text-decoration: ${bi.deco};`)}>{bi.text}</div>
                               <div style={sx(`font-size: 8.5px; font-weight: 700; letter-spacing: 0.1em; color: #6E7291; background: #F5F6FA; border: 1px solid #E4E5F0; padding: 2px 7px; border-radius: 3px;`)}>{bi.tag}</div>
@@ -494,7 +494,7 @@ export function Template(vals: any) {
                 </div>
               </div>
             </div>
-            <div style={sx(`display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.45); padding: 12px 6px 0;`)}>
+            <div style={sx(`display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.58); padding: 12px 6px 0;`)}>
               <span style={sx(`color: #93A2FF;`)}>SYS-02</span>
               <span style={sx(`color: ${vals.part2Color}; transition: color 0.4s ease;`)}>{vals.part2Text}</span>
               <span>TAP CARDS TO MOVE THEM — THE BRIEF & FUNNEL FOLLOW</span>
@@ -504,7 +504,7 @@ export function Template(vals: any) {
 
           <div data-mc-syscard="" data-st="" style={sx(`display: flex; flex-direction: column; position: sticky; top: 84px; order: 2; animation-delay: 0.15s;`)}>
             <div style={sx(`font-size: 15.5px; line-height: 1.65; color: rgba(237,239,247,0.88); margin-bottom: 8px;`)}>Job-search ops, run like revenue ops. Emails me my action list every morning.</div>
-            <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.45); margin-bottom: 20px;`)}>next.js · supabase · resend</div>
+            <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.58); margin-bottom: 20px;`)}>next.js · supabase · resend</div>
             <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: #93A2FF; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(147,162,255,0.35);`)}>FLIGHT RULES — DESIGN DECISIONS</div>
             <ol style={sx(`margin: 0 0 24px; padding: 0; list-style: none; display: flex; flex-direction: column;`)}>
               <li style={sx(`display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(147,162,255,0.12); font-size: 15px; line-height: 1.55; color: rgba(237,239,247,0.92);`)}><span style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; color: #93A2FF; padding-top: 3px;`)}>R1</span>No auto-submit, ever — I review every application</li>
@@ -538,7 +538,7 @@ export function Template(vals: any) {
         <div data-mc-pay="" style={sx(`display: grid; grid-template-columns: 350px minmax(0, 1fr); gap: 52px; align-items: start;`)}>
           <div data-mc-syscard="" data-st="" style={sx(`display: flex; flex-direction: column; position: sticky; top: 84px; animation-delay: 0.15s;`)}>
             <div style={sx(`font-size: 15.5px; line-height: 1.65; color: rgba(237,239,247,0.88); margin-bottom: 8px;`)}>The family OS our household runs on. 175k lines · 40 routes · two daily users.</div>
-            <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.45); margin-bottom: 20px;`)}>next.js · supabase</div>
+            <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.58); margin-bottom: 20px;`)}>next.js · supabase</div>
             <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: #FF9E6E; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,158,110,0.35);`)}>FLIGHT RULES — DESIGN DECISIONS</div>
             <ol style={sx(`margin: 0 0 24px; padding: 0; list-style: none; display: flex; flex-direction: column;`)}>
               <li style={sx(`display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(147,162,255,0.12); font-size: 15px; line-height: 1.55; color: rgba(237,239,247,0.92);`)}><span style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; color: #FF9E6E; padding-top: 3px;`)}>R1</span>Wedge: one table, four categories — then grow</li>
@@ -562,7 +562,7 @@ export function Template(vals: any) {
                 {(vals.p3Tabs).map((tab: any, _mci13: number) => (<Fragment key={_mci13}>
                   <button onClick={tab.go} style={sx(`cursor: pointer; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: ${tab.color}; background: ${tab.bg}; border: 1px solid ${tab.border}; padding: 6px 12px; border-radius: 3px; transition: all 0.25s ease;`)}>{tab.label}</button>
                 </Fragment>))}
-                <span data-mc-hidemobile="" style={sx(`margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.35);`)}>APP MAP {vals.p3Pos}</span>
+                <span data-mc-hidemobile="" style={sx(`margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.52);`)}>APP MAP {vals.p3Pos}</span>
               </div>
               <div data-screenon="" style={sx(`border-radius: 9px; overflow: hidden;`)}>
                 <div style={sx(`display: flex; transform: ${vals.p3Track}; transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);`)}>
@@ -589,7 +589,7 @@ export function Template(vals: any) {
                       </div>
                       <div style={sx(`display: flex; flex-direction: column;`)}>
                         {(vals.hubTasks).map((task: any, _mci14: number) => (<Fragment key={_mci14}>
-                          <div onClick={task.toggle} style={sx(`cursor: pointer; display: flex; align-items: center; gap: 13px; padding: 10px; border-radius: 8px; transition: background 0.15s ease;`)} className={pseudoClass(`background: rgba(217,98,43,0.06);`, `background: rgba(217,98,43,0.12);`)}>
+                          <div onClick={task.toggle} style={sx(`cursor: pointer; display: flex; align-items: center; gap: 13px; padding: 10px; border-radius: 8px; transition: background 0.15s ease;`)} className={pseudoClass(`background: rgba(217,98,43,0.06);`, `background: rgba(217,98,43,0.12);`)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); (task.toggle)(e); } }}>
                             <div style={sx(`width: 21px; height: 21px; border-radius: 50%; box-sizing: border-box; border: 2px solid ${task.ring}; background: ${task.fill}; color: #FBF5EA; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: background 0.2s ease, border-color 0.2s ease; flex-shrink: 0;`)}>{task.tick}</div>
                             <div style={sx(`flex: 1; font-size: 14px; font-weight: 600; color: ${task.color}; text-decoration: ${task.deco}; transition: color 0.2s ease;`)}>{task.label}</div>
                             <div style={sx(`font-family: 'Geist Mono', monospace; font-size: 10.5px; color: #A89C8C;`)}>{task.time}</div>
@@ -633,7 +633,7 @@ export function Template(vals: any) {
                 </div>
               </div>
             </div>
-            <div style={sx(`display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.45); padding: 12px 6px 0;`)}>
+            <div style={sx(`display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.58); padding: 12px 6px 0;`)}>
               <span style={sx(`color: #FF9E6E;`)}>SYS-03</span>
               <span style={sx(`color: ${vals.part3Color}; transition: color 0.4s ease;`)}>{vals.part3Text}</span>
               <span>CHECK THINGS OFF — THE BIG NUMBER & THE WEEK FOLLOW</span>
@@ -675,7 +675,7 @@ export function Template(vals: any) {
                 {(vals.p4Tabs).map((tab: any, _mci17: number) => (<Fragment key={_mci17}>
                   <button onClick={tab.go} style={sx(`cursor: pointer; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: ${tab.color}; background: ${tab.bg}; border: 1px solid ${tab.border}; padding: 6px 12px; border-radius: 3px; transition: all 0.25s ease;`)}>{tab.label}</button>
                 </Fragment>))}
-                <span data-mc-hidemobile="" style={sx(`margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.35);`)}>APP MAP {vals.p4Pos}</span>
+                <span data-mc-hidemobile="" style={sx(`margin-left: auto; align-self: center; font-family: 'Martian Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(237,239,247,0.52);`)}>APP MAP {vals.p4Pos}</span>
               </div>
               <div data-screenon="" style={sx(`border-radius: 9px; overflow: hidden;`)}>
                 <div style={sx(`display: flex; transform: ${vals.p4Track}; transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);`)}>
@@ -751,7 +751,7 @@ export function Template(vals: any) {
                 </div>
               </div>
             </div>
-            <div style={sx(`display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.45); padding: 12px 6px 0;`)}>
+            <div style={sx(`display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.58); padding: 12px 6px 0;`)}>
               <span style={sx(`color: #6EC8FF;`)}>SYS-04</span>
               <span style={sx(`color: ${vals.part4Color}; transition: color 0.4s ease;`)}>{vals.part4Text}</span>
               <span>ONE CONFIG OBJECT REBRANDS EVERYTHING</span>
@@ -761,7 +761,7 @@ export function Template(vals: any) {
 
           <div data-mc-syscard="" data-st="" style={sx(`display: flex; flex-direction: column; position: sticky; top: 84px; order: 2; animation-delay: 0.15s;`)}>
             <div style={sx(`font-size: 15.5px; line-height: 1.65; color: rgba(237,239,247,0.88); margin-bottom: 8px;`)}>Client build → multi-tenant white-label SaaS. Glass fintech UI, tenant-swappable brand.</div>
-            <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.45); margin-bottom: 20px;`)}>next.js · postgres RLS</div>
+            <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: rgba(237,239,247,0.58); margin-bottom: 20px;`)}>next.js · postgres RLS</div>
             <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: #6EC8FF; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(110,200,255,0.35);`)}>FLIGHT RULES — DESIGN DECISIONS</div>
             <ol style={sx(`margin: 0 0 24px; padding: 0; list-style: none; display: flex; flex-direction: column;`)}>
               <li style={sx(`display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(147,162,255,0.12); font-size: 15px; line-height: 1.55; color: rgba(237,239,247,0.92);`)}><span style={sx(`font-family: 'Martian Mono', monospace; font-size: 10px; color: #6EC8FF; padding-top: 3px;`)}>R1</span>White-label from day one — brand is one config object</li>
@@ -868,7 +868,7 @@ export function Template(vals: any) {
             <p style={sx(`margin: 0; font-size: 13px; line-height: 1.6; color: rgba(237,239,247,0.72);`)}>One deployment, N tenants: a config object per tenant, enforced by Postgres RLS.</p>
           </div>
         </div>
-        <div data-st="" style={sx(`margin-top: 22px; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.4); animation-delay: 0.35s;`)}>FULL DIAGRAMS AND THE WHY-NOT LIST — IN EACH MISSION REPORT, OR LIVE ON A CALL</div>
+        <div data-st="" style={sx(`margin-top: 22px; font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(237,239,247,0.55); animation-delay: 0.35s;`)}>FULL DIAGRAMS AND THE WHY-NOT LIST — IN EACH MISSION REPORT, OR LIVE ON A CALL</div>
       </div>
     </section>
 
@@ -945,14 +945,14 @@ export function Template(vals: any) {
             <a href="https://www.linkedin.com/in/tobias-norman-66908115a" target="_blank" rel="noopener noreferrer" style={sx(`color: #EDEFF7; text-decoration: none; border-bottom: 1px solid rgba(237,239,247,0.3); padding-bottom: 2px;`)}>LINKEDIN</a>
             <a href="https://github.com/tobias-shaun" target="_blank" rel="noopener noreferrer" style={sx(`color: #EDEFF7; text-decoration: none; border-bottom: 1px solid rgba(237,239,247,0.3); padding-bottom: 2px;`)}>GITHUB</a>
           </div>
-          <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(237,239,247,0.4); line-height: 2;`)}>SET IN ARCHIVO BLACK & MARTIAN MONO · BUILT WITH NEXT.JS, TYPESCRIPT & CLAUDE CODE · ALL TELEMETRY ON THIS PAGE IS REAL · © 2026</div>
+          <div style={sx(`font-family: 'Martian Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: rgba(237,239,247,0.55); line-height: 2;`)}>SET IN ARCHIVO BLACK & MARTIAN MONO · BUILT WITH NEXT.JS, TYPESCRIPT & CLAUDE CODE · ALL TELEMETRY ON THIS PAGE IS REAL · © 2026</div>
         </div>
         <div data-astro-perch="" data-solid="" style={sx(`border: 1px solid rgba(147,162,255,0.2); border-radius: 8px; padding: 20px 22px; font-family: 'Martian Mono', monospace; font-size: 10.5px; line-height: 1.9; background: rgba(11,15,26,0.6);`)}>
           <div style={sx(`font-size: 9px; letter-spacing: 0.24em; color: rgba(237,239,247,0.5); margin-bottom: 12px; padding-bottom: 9px; border-bottom: 1px solid rgba(147,162,255,0.14);`)}>SYS-05 — THIS CONSOLE</div>
           <div style={sx(`display: grid; grid-template-columns: 58px 1fr; gap: 5px 12px;`)}>
-            <span style={sx(`color: rgba(237,239,247,0.45);`)}>what</span><span>the fifth working system</span>
-            <span style={sx(`color: rgba(237,239,247,0.45);`)}>built</span><span>PRD first · claude code · shipped</span>
-            <span style={sx(`color: rgba(237,239,247,0.45);`)}>status</span><span style={sx(`color: #4ADE80;`)}>you're inside the demo</span>
+            <span style={sx(`color: rgba(237,239,247,0.58);`)}>what</span><span>the fifth working system</span>
+            <span style={sx(`color: rgba(237,239,247,0.58);`)}>built</span><span>PRD first · claude code · shipped</span>
+            <span style={sx(`color: rgba(237,239,247,0.58);`)}>status</span><span style={sx(`color: #4ADE80;`)}>you're inside the demo</span>
           </div>
         </div>
       </div>

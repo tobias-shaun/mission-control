@@ -68,7 +68,7 @@ export class MissionControlEngine extends EngineBase {
     seen: {},
     now: Date.now(), mountedAt: Date.now(), scrollPct: 0,
     screens: [0, 0, 0, 0],
-    sel: [], phase: 'idle', outfit: [], noteIx: 0,
+    sel: [], phase: 'idle', outfit: [], noteIx: 0, note: '',
     prefs: ['feeding', 'waist', 'wash'],
     cards: MissionControlEngine.initialCards(),
     briefDone: [],
@@ -86,7 +86,7 @@ export class MissionControlEngine extends EngineBase {
 
   bootLines = [
     { text: 'FLIGHT OPS CONSOLE — v2.0', color: '#EDEFF7' },
-    { text: 'operator ......... tobias · sydney', color: 'rgba(237,239,247,0.65)' },
+    { text: 'operator ......... tobias norman · sydney', color: 'rgba(237,239,247,0.65)' },
     { text: 'mission .......... customer success → ai product', color: 'rgba(237,239,247,0.65)' },
     { text: 'scanning system .......... 4 planets found', color: 'rgba(237,239,247,0.65)' },
     { text: '  01 hatched ............. PRE-LAUNCH', color: '#FF9EB8' },
@@ -131,11 +131,13 @@ export class MissionControlEngine extends EngineBase {
     { id: 'sneak', name: 'White sneakers', cat: 'shoes', color: '#E9E6E0' }
   ];
 
+  // one note per canned pool, in pool order — each describes exactly that look
   notes = [
-    'Soft layers for a school-run morning — the sage grounds the rose, and everything machine-washes.',
-    'Comfort-first but put-together: relaxed denim balances the fitted knit. Feeding-friendly neckline.',
-    'One easy piece plus sneakers — five-minute dressing for a big day. You already own all of it.'
+    'Soft knit over relaxed denim for a school-run morning — sneakers keep it easy, and everything machine-washes.',
+    'Comfort-first but put-together: the rose midi softened by a trench, sneakers to keep it grounded. Feeding-friendly neckline.',
+    'White tee, pleated skirt, the sage over your shoulders — five-minute dressing for a big day. You already own all of it.'
   ];
+  selNote = 'Styled around your picks — nothing new to buy, and it all machine-washes.';
 
   prefDefs = [
     { id: 'feeding', label: 'feeding-friendly necklines' },
@@ -196,11 +198,11 @@ export class MissionControlEngine extends EngineBase {
           const n = s.bootShown + 1;
           if (n >= this.bootLines.length) {
             clearInterval(this.bootTimer);
-            setTimeout(() => {
+            this._bootFlashT = setTimeout(() => {
               this.setState({ bootPhase: 'flash' });
-              setTimeout(() => {
+              this._bootFadeT = setTimeout(() => {
                 this.setState({ bootPhase: 'fade' });
-                setTimeout(() => this.finishBoot(), 620);
+                this._bootDoneT = setTimeout(() => this.finishBoot(), 620);
               }, 950);
             }, 420);
           }
@@ -235,6 +237,10 @@ export class MissionControlEngine extends EngineBase {
           if (id && !this.state.seen[id]) {
             this.setState(s => ({ seen: { ...s.seen, [id]: true } }));
           }
+          // no fly camera on mobile / reduced-motion — a payload section scrolling into
+          // view is the moment its ship part is recovered (collectPart is idempotent)
+          const roomAttr = e.target.getAttribute('data-room');
+          if (roomAttr !== null && roomAttr !== '') this.collectPart(parseInt(roomAttr, 10));
           this.seenObs.unobserve(e.target);
         }
       });
@@ -258,7 +264,7 @@ export class MissionControlEngine extends EngineBase {
     // fly-through camera: measure + engage, re-measure when fonts land or the window resizes
     this.setupFly();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (this.gen === window.__mcGen) this.setupFly(); });
-    setTimeout(() => { if (this.gen === window.__mcGen) this.setupFly(); }, 1800);
+    this._flyReT = setTimeout(() => { if (this.gen === window.__mcGen) this.setupFly(); }, 1800);
     this.onResize = () => {
       if (this.gen !== window.__mcGen) { window.removeEventListener('resize', this.onResize); return; }
       clearTimeout(this._rsT);
@@ -314,7 +320,7 @@ export class MissionControlEngine extends EngineBase {
     };
     window.addEventListener('keydown', this.onKeys);
     // prefetch ALL report pages during idle so every dive lands on a warm cache — no loading stall
-    setTimeout(() => {
+    this._prefetchT = setTimeout(() => {
       if (this.gen !== window.__mcGen) return;
       ['/reports/hatched', '/reports/job-command-center', '/reports/life-hub', '/reports/property-platform'].forEach(u => { try { fetch(u).catch(() => {}); } catch (e) {} });
     }, 4000);
@@ -373,14 +379,31 @@ export class MissionControlEngine extends EngineBase {
     document.addEventListener('click', this.onRipple, true);
 
     this.initStars();
+    this.syncSlideInert();
   }
 
   componentWillUnmount() {
+    // full teardown of everything mount/setupFly created — the generation guard stays
+    // as belt-and-braces, but nothing should be left running on the window/document
     [this.bootTimer, this.typeTimer, this.clock].forEach(t => t && clearInterval(t));
+    [this._bootFlashT, this._bootFadeT, this._bootDoneT, this._flyReT, this._rsT,
+     this._prefetchT, this._warpT, this._retT, this._diveEndT, this._goWarpT, this._goNavT,
+     this._styleT].forEach(t => t && clearTimeout(t));
+    if (this._partPending) { Object.keys(this._partPending).forEach(k => clearTimeout(this._partPending[k])); this._partPending = null; }
     if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.scrollRaf) { cancelAnimationFrame(this.scrollRaf); this.scrollRaf = null; }
     if (this.seenObs) this.seenObs.disconnect();
     if (this.roomObs) this.roomObs.disconnect();
     window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('wheel', this.onWheel);
+    window.removeEventListener('touchstart', this.onTouchStart);
+    window.removeEventListener('touchmove', this.onTouchMove);
+    window.removeEventListener('keydown', this.onKeys);
+    document.removeEventListener('click', this.flyNav, true);
+    document.removeEventListener('click', this.onFreeClick);
+    document.removeEventListener('click', this.onRipple, true);
+    if (this._clickMark) { try { this._clickMark.remove(); } catch (e) {} this._clickMark = null; }
     if (this.cleanupStars) this.cleanupStars();
   }
 
@@ -655,12 +678,18 @@ export class MissionControlEngine extends EngineBase {
       if (spacer) spacer.style.height = '0px';
       if (hd) { hd.style.position = ''; hd.style.left = ''; hd.style.right = ''; hd.style.zIndex = ''; }
       this.flyOn = false; this.flyMap = null;
+      // resizing back under 880px after fly mode ran: fly mode disconnected the seen/room
+      // observers, which would leave sections unrevealed and ship parts uncollectible —
+      // reconnect them here. observe() is a no-op for already-observed targets, so the
+      // initial (never-flew) pass through this branch can't double-observe.
+      if (this.seenObs) document.querySelectorAll('[data-screen-label]').forEach(el => this.seenObs.observe(el));
+      if (this.roomObs) document.querySelectorAll('[data-room]').forEach(el => this.roomObs.observe(el));
       // no fly camera here, but a report return must still consume its marker and lift the
       // warp overlay — otherwise it covers the page forever on mobile / reduced-motion
       let mret = null;
       try { mret = sessionStorage.getItem('mc_return'); if (mret !== null) sessionStorage.removeItem('mc_return'); } catch (e) {}
       if (this.state.warpOn) {
-        setTimeout(() => { if (this.gen === window.__mcGen) this.setState({ warpOn: false }); }, this.rm ? 60 : 480);
+        this._warpT = setTimeout(() => { if (this.gen === window.__mcGen) this.setState({ warpOn: false }); }, this.rm ? 60 : 480);
       }
       return;
     }
@@ -708,11 +737,11 @@ export class MissionControlEngine extends EngineBase {
         const pmEl = document.getElementById('pay-0' + (rix + 1));
         const pmi = pmEl ? this.flyMap.findIndex(mm => mm.el === pmEl || mm.el.contains(pmEl)) : -1;
         if (pmi >= 0) { this.camSec = pmi; this.cam = this.flyMap[pmi].readStart; }
-        setTimeout(() => {
+        this._retT = setTimeout(() => {
           if (this.gen !== window.__mcGen) return;
           this.setState({ warpOn: false });
           this.dive = { t0: performance.now(), ix: rix, dur: 2200, reverse: true };
-          setTimeout(() => { if (this.gen === window.__mcGen) this.dive = null; }, 2260);
+          this._diveEndT = setTimeout(() => { if (this.gen === window.__mcGen) this.dive = null; }, 2260);
         }, 480);
       } else if (this.state.warpOn) {
         this.setState({ warpOn: false });
@@ -1032,11 +1061,11 @@ export class MissionControlEngine extends EngineBase {
     // POV descent, Destiny-style: the page flies out first, then the planet approaches, then we punch through the deck
     this.dive = { t0: performance.now(), ix, dur: 2600 };
     try { fetch(url).catch(() => {}); } catch (e2) {} // warm the cache so arrival is instant
-    setTimeout(() => {
+    this._goWarpT = setTimeout(() => {
       if (this.gen !== window.__mcGen) return;
       this.setState({ warpOn: true, warpBg: this.reportClouds[ix] });
     }, 2050);
-    setTimeout(() => { window.location.href = url; }, 2750);
+    this._goNavT = setTimeout(() => { window.location.href = url; }, 2750);
   }
 
   goReport1 = (e) => { this.goReportFor(0, '/reports/hatched', e); };
@@ -1347,22 +1376,31 @@ export class MissionControlEngine extends EngineBase {
   styleMe = () => {
     if (this.state.phase === 'thinking') return;
     this.setState({ phase: 'thinking', outfit: [] });
-    setTimeout(() => {
+    this._styleT = setTimeout(() => {
       const selPieces = this.wardrobeData.filter(w => this.state.sel.includes(w.id));
-      let picks;
-      if (selPieces.length >= 2) {
+      let picks, note;
+      if (selPieces.length >= 1) {
+        // build the look around whatever she picked — even a single piece
         picks = selPieces.slice(0, 3);
-        if (picks.length === 2) {
-          const extra = this.wardrobeData.find(w => !this.state.sel.includes(w.id) && w.cat === 'shoes') || this.wardrobeData[7];
-          picks = picks.concat(extra);
+        if (picks.length < 3 && !picks.some(p => p.cat === 'shoes')) picks.push(this.wardrobeData.find(w => w.id === 'sneak'));
+        for (const id of ['sage', 'denim', 'trench', 'tee']) {
+          if (picks.length >= 3) break;
+          const w = this.wardrobeData.find(x => x.id === id);
+          // never a second bottom half (a dress counts) — but doubled tops are just layering
+          if (picks.some(p => p.id === id) || (w.cat === 'bottom' && picks.some(p => p.cat === 'bottom' || p.cat === 'dress'))) continue;
+          picks.push(w);
         }
+        note = this.selNote;
       } else {
         const pools = [['sage', 'denim', 'sneak'], ['midi', 'trench', 'sneak'], ['tee', 'skirt', 'sage']];
-        picks = pools[this.state.noteIx % pools.length].map(id => this.wardrobeData.find(w => w.id === id));
+        const poolIx = this.state.noteIx % pools.length;
+        picks = pools[poolIx].map(id => this.wardrobeData.find(w => w.id === id));
+        note = this.notes[poolIx]; // the caption travels WITH its pool — it always describes this look
       }
       this.setState(s => ({
         phase: 'result',
         outfit: picks.map(p => ({ name: p.name, swatch: this.swatch(p.color) })),
+        note,
         noteIx: s.noteIx + 1
       }));
     }, this.rm ? 200 : 1400);
@@ -1376,9 +1414,8 @@ export class MissionControlEngine extends EngineBase {
     if (idx < 0 || idx > 3 || this.state.parts[idx]) return;
     this._partPending = this._partPending || {};
     if (this._partPending[idx]) return;
-    this._partPending[idx] = true;
     const gen = this.gen;
-    setTimeout(() => {
+    this._partPending[idx] = setTimeout(() => {
       if (gen !== window.__mcGen || this.state.parts[idx]) return;
       this.setState(s => {
         const parts = s.parts.slice();
@@ -1400,6 +1437,31 @@ export class MissionControlEngine extends EngineBase {
       const screens = s.screens.slice();
       screens[payload] = ix;
       return { screens };
+    });
+    this.syncSlideInert(); // setState merges synchronously — screens is already current here
+  }
+
+  // hidden demo slides sit inside an overflow:hidden track; without inert their buttons stay
+  // tabbable, and focusing one makes the browser scroll the clipped box — shearing the demo
+  // permanently. React never manages these nodes' inert, so direct DOM writes (the engine's
+  // usual pattern) are safe. Called once after mount and again on every tab switch — no thrash.
+  syncSlideInert() {
+    document.querySelectorAll('[data-screenon]').forEach((box, i) => {
+      if (!box._mcShear) {
+        // belt-and-braces: if anything DOES scroll the clipped box (focus, find-in-page), snap it back
+        box._mcShear = true;
+        box.addEventListener('scroll', () => { box.scrollLeft = 0; box.scrollTop = 0; });
+      }
+      // the demo's payload index comes from the section it lives in — same state that drives pNTrack
+      const sec = box.closest ? box.closest('[data-room]') : null;
+      const pIx = sec ? parseInt(sec.getAttribute('data-room'), 10) : i;
+      const active = (this.state.screens && this.state.screens[pIx]) || 0;
+      const track = box.firstElementChild;
+      if (!track) return;
+      Array.from(track.children).forEach((slide, six) => {
+        const off = six !== active;
+        if (slide.inert !== off) slide.inert = off;
+      });
     });
   }
 
@@ -1579,6 +1641,8 @@ export class MissionControlEngine extends EngineBase {
           ? 'ALL PARTS RECOVERED — SHIP REPAIRED · READY TO LAUNCH'
           : 'SHIP REPAIR ' + this.state.parts.filter(Boolean).length + '/4 — A PART WAITS ON EACH PLANET'),
       shipStatusColor: this.state.parts.every(Boolean) ? '#4ADE80' : 'rgba(237,239,247,0.55)',
+      crewFixed: this.state.parts.every(Boolean),
+      crewDamaged: !this.state.parts.every(Boolean),
       shipTransform: this.state.launching ? 'translateY(-560px)' : 'none',
       shipOpacity: this.state.launching ? 0 : 1,
       finFill: this.state.parts.every(Boolean) ? '#FF6EC7' : 'none',
@@ -1640,7 +1704,7 @@ export class MissionControlEngine extends EngineBase {
       notThinking: phase !== 'thinking',
       hasOutfit: phase === 'result' && outfit.length > 0,
       outfit,
-      outfitNote: this.notes[(noteIx - 1 + this.notes.length) % this.notes.length],
+      outfitNote: this.state.note || this.notes[(noteIx - 1 + this.notes.length) % this.notes.length],
       selectionHint: sel.length > 0 ? sel.length + ' piece' + (sel.length > 1 ? 's' : '') + ' selected' : 'or let it pick from everything',
       styleMe: this.styleMe,
 

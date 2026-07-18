@@ -69,6 +69,10 @@
     [data-mc-astro] { display: none !important; }
     [data-mc-archrow] { grid-template-columns: 1fr !important; gap: 6px !important; }
     [data-mc-archgrid] { grid-template-columns: 1fr !important; }
+    /* touch targets: demo tab pills / pref chips reach ≥40px; the two RESET
+       anchors (the only a[href="#"]) gain hit area with no layout shift */
+    [data-mc-bezel] button { min-height: 40px; }
+    a[href="#"] { padding: 14px 10px; margin: -14px -10px; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }

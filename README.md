@@ -65,7 +65,11 @@ HUD bar, footer).
 ## Routes
 
 - `/` — Mission Control (the portfolio).
-- `/reports/[slug]` — placeholder Mission Report pages. The individual deep-dive
-  reports (`hatched`, `job-command-center`, `life-hub`, `property-platform`) are
-  separate design files and a separate deliverable; these placeholders keep the
-  planet-dive navigation intact.
+- `/reports/[slug]` — Mission Report deep-dives for the four products
+  (`hatched`, `job-command-center`, `life-hub`, `property-platform`). Each
+  report runs problem → flight rules → build log → staged real-app captures
+  (screenshots pending) → receipts.
+
+The repo is under git. The generator pipeline remains authoritative:
+`design-source/` plus the transform script produce `template.tsx` — regenerate,
+don't hand-edit.

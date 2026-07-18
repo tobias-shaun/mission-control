@@ -226,6 +226,10 @@ def parse_tag(tag):
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input",
         "link", "meta", "param", "source", "track", "wbr"}
 
+# Tags that are keyboard-operable natively; anything else with an onClick gets
+# button semantics (role/tabIndex) plus an Enter/Space onKeyDown handler.
+NATIVE_INTERACTIVE = {"a", "button", "input", "textarea", "select"}
+
 
 def convert_attr_name(name):
     if name in ATTR_MAP:
@@ -243,6 +247,8 @@ def convert_attr_name(name):
 def emit_open(name, attrs, self_close, loopvars):
     pieces = ["<" + name]
     hover = active = None
+    click_expr = None
+    attr_names = {a for a, _ in attrs}
     for an, av in attrs:
         if an in ("hint-placeholder-count", "hint-placeholder-val"):
             continue
@@ -261,7 +267,10 @@ def emit_open(name, attrs, self_close, loopvars):
         jsx_name = convert_attr_name(an)
         single = is_single_binding(av)
         if single is not None:
-            pieces.append(f"{jsx_name}={{{prefix_expr(single, loopvars)}}}")
+            expr = prefix_expr(single, loopvars)
+            if an == "onClick":
+                click_expr = expr
+            pieces.append(f"{jsx_name}={{{expr}}}")
         elif "{{" in av:
             pieces.append(jsx_name + "={`" + to_template_literal(av, loopvars) + "`}")
         else:
@@ -275,6 +284,18 @@ def emit_open(name, attrs, self_close, loopvars):
         else:
             cls = f"pseudoClass('', `{to_template_literal(active, loopvars)}`)"
         pieces.append("className={" + cls + "}")
+    # Keyboard a11y: clickable non-native-interactive elements (onClick divs)
+    # become focusable buttons operable with Enter/Space. The handler expression
+    # is a stable vals/loop-var reference, so emitting it twice is safe.
+    if click_expr is not None and name not in NATIVE_INTERACTIVE:
+        if "role" not in attr_names:
+            pieces.append('role="button"')
+        if "tabindex" not in attr_names:
+            pieces.append("tabIndex={0}")
+        pieces.append(
+            "onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') "
+            "{ e.preventDefault(); (" + click_expr + ")(e); } }}"
+        )
     end = " />" if (self_close or name in VOID) else ">"
     return " ".join(pieces) + end
 
