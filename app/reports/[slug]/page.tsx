@@ -15,9 +15,9 @@ import { BackToMissionControl } from "./report-client";
 const MONO = "'Martian Mono', monospace";
 const DISPLAY = "'Archivo Black', sans-serif";
 const SERIF = "'Instrument Serif', serif";
-const BODY = "rgba(237,239,247,0.85)";
-const DIM = "rgba(237,239,247,0.7)";
-const DIMMER = "rgba(237,239,247,0.5)";
+const BODY = "rgba(237,239,247,0.93)";
+const DIM = "rgba(237,239,247,0.8)";
+const DIMMER = "rgba(237,239,247,0.62)";
 const HAIRLINE = "1px solid rgba(147,162,255,0.14)";
 
 /* Static CSS starfield — three tiled dot layers, no animation (nothing to
@@ -73,7 +73,7 @@ function SectionLabel({ num, text, r }: { num: string; text: string; r: Report }
       <span>
         {num} · {text}
       </span>
-      <span style={{ color: "rgba(237,239,247,0.35)" }}>SYS-{r.num}</span>
+      <span style={{ color: "rgba(237,239,247,0.5)" }}>SYS-{r.num}</span>
     </div>
   );
 }
@@ -175,7 +175,7 @@ function Capture({ slot, index, r }: { slot: CaptureSlot; index: number; r: Repo
                   fontFamily: MONO,
                   fontSize: 8.5,
                   letterSpacing: "0.18em",
-                  color: "rgba(237,239,247,0.35)",
+                  color: "rgba(237,239,247,0.5)",
                   marginTop: 10,
                 }}
               >
@@ -204,7 +204,7 @@ function Capture({ slot, index, r }: { slot: CaptureSlot; index: number; r: Repo
         >
           CAP {capNum}
         </span>
-        <span style={{ fontSize: 13.5, lineHeight: 1.6, color: "rgba(237,239,247,0.65)" }}>
+        <span style={{ fontSize: 14.5, lineHeight: 1.6, color: "rgba(237,239,247,0.78)" }}>
           {slot.caption}
         </span>
       </figcaption>
@@ -251,12 +251,24 @@ export default async function ReportPage({ params }: PageProps) {
       <div
         style={{
           position: "relative",
-          maxWidth: 760,
+          maxWidth: 824,
           margin: "0 auto",
-          padding: "0 20px 96px",
+          padding: "28px 16px 96px",
           boxSizing: "border-box",
         }}
       >
+        {/* elevated reading surface — long-form text never sits on the bare
+            starfield; the panel bounds the column and mutes the dots behind it */}
+        <article
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(16,21,34,0.9), rgba(11,15,25,0.95))",
+            border: "1px solid rgba(147,162,255,0.12)",
+            borderRadius: 18,
+            padding: "0 clamp(20px, 5vw, 52px) 72px",
+            boxShadow: "0 30px 80px -48px rgba(0,0,0,0.85)",
+          }}
+        >
         {/* top bar */}
         <div
           style={{
@@ -325,7 +337,7 @@ export default async function ReportPage({ params }: PageProps) {
                   fontFamily: MONO,
                   fontSize: 9.5,
                   letterSpacing: "0.1em",
-                  color: "rgba(237,239,247,0.6)",
+                  color: "rgba(237,239,247,0.75)",
                   border: `1px solid rgba(${r.accentRgb}, 0.3)`,
                   padding: "6px 10px",
                   borderRadius: 3,
@@ -339,7 +351,7 @@ export default async function ReportPage({ params }: PageProps) {
                 fontFamily: MONO,
                 fontSize: 9,
                 letterSpacing: "0.18em",
-                color: "rgba(237,239,247,0.4)",
+                color: "rgba(237,239,247,0.55)",
                 marginLeft: "auto",
               }}
             >
@@ -356,8 +368,8 @@ export default async function ReportPage({ params }: PageProps) {
               key={i}
               style={{
                 margin: i ? "16px 0 0" : 0,
-                fontSize: 16.5,
-                lineHeight: 1.7,
+                fontSize: 17,
+                lineHeight: 1.75,
                 color: BODY,
               }}
             >
@@ -406,7 +418,7 @@ export default async function ReportPage({ params }: PageProps) {
                     <p
                       style={{
                         margin: "8px 0 0",
-                        fontSize: 14,
+                        fontSize: 15,
                         lineHeight: 1.65,
                         color: DIM,
                       }}
@@ -424,7 +436,7 @@ export default async function ReportPage({ params }: PageProps) {
         {/* 03 — BUILD LOG */}
         <Section>
           <SectionLabel num="03" text="BUILD LOG — HOW IT WAS BUILT" r={r} />
-          <p style={{ margin: 0, fontSize: 16, lineHeight: 1.7, color: BODY }}>
+          <p style={{ margin: 0, fontSize: 16.5, lineHeight: 1.75, color: BODY }}>
             {BUILD_FRAME}
           </p>
           <div
@@ -458,7 +470,7 @@ export default async function ReportPage({ params }: PageProps) {
                   <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 5 }}>
                     {st.title}
                   </div>
-                  <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.65, color: DIM }}>
+                  <p style={{ margin: 0, fontSize: 15, lineHeight: 1.65, color: DIM }}>
                     {st.body}
                   </p>
                 </div>
@@ -488,9 +500,9 @@ export default async function ReportPage({ params }: PageProps) {
             <p
               style={{
                 margin: 0,
-                fontSize: 13.5,
+                fontSize: 14.5,
                 lineHeight: 1.65,
-                color: "rgba(237,239,247,0.72)",
+                color: "rgba(237,239,247,0.82)",
               }}
             >
               {r.buildNote}
@@ -670,6 +682,7 @@ export default async function ReportPage({ params }: PageProps) {
             />
           </div>
         </section>
+        </article>
       </div>
     </main>
   );
